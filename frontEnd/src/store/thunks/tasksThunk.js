@@ -1,15 +1,36 @@
 import {createAsyncThunk} from '@reduxjs/toolkit'
-import axios from 'axios'
+import axios from 'axios';
 
-const createTask = createAsyncThunk('tasks/createTask', ({task, completed})=> {
-    const url = "http://localhost:3000/api/v1/tasks/"
+const url = "http://localhost:3000/api/v1/tasks"
+
+const createTask = createAsyncThunk('tasks/createTask', async(newTask)=> {
     try {
-        const results = axios.post(url, {task, completed})
-        console.log(results.data);
-        return results.data
+         const response = await axios.post(url, newTask)
+        return response.data.message
     } catch (error) {
-        throw new Error('Failed to create task')
+        console.error('Error creating task:', error);
+        throw error;
     }
 })
 
-export {createTask}
+
+const getTasks = createAsyncThunk('tasks/getTasks', async ()=> {
+    try {
+       const tasks = await axios.get(url)
+       return tasks.data.message
+    } catch (error) {
+        console.error('Error loading tasks:', error);
+        throw error
+    }
+})
+
+const removeTask = createAsyncThunk('tasks/removeTask', async(id)=> {
+    try {
+        await axios.delete(`http://localhost:3000/api/v1/tasks/${id}`)
+        return id
+    } catch (error) {
+        console.error('Error loading tasks:', error);
+        throw error
+    }
+})
+export {createTask, getTasks, removeTask}
