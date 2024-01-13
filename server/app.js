@@ -7,7 +7,7 @@ require('dotenv').config()
 app.use(express.json())
 app.use('/api/v1/tasks', router)
 
-const port = process.env.PORT;
+const port = process.env.PORT || 3000;
 const url = process.env.MONGO_URI;
 const start = async()=> {
     try {
