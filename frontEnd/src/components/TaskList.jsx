@@ -3,7 +3,7 @@ import TaskItem from "./TaskItem"
 const TaskList = () => {
 
     return(
-        <div>
+        <div className="">
             <TaskItem />
         </div>
     )
