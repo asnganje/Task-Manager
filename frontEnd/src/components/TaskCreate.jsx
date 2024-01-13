@@ -1,7 +1,19 @@
+import { useState } from "react"
+import { useDispatch } from "react-redux"
+import { createTask } from "../store/thunks/tasksThunk"
+
 const TaskCreate = () => {
 
+    const [task, setTask] = useState('')
+    const dispatch = useDispatch()
+    const newTaskHandler = (e) => {
+        setTask(e.target.value)
+    }
+    const newTask = {name: task}
     const submitHandler = (e)=> {
         e.preventDefault()
+        dispatch(createTask(newTask))
+        setTask('')
     }
 
     return(
@@ -12,7 +24,11 @@ const TaskCreate = () => {
                 <input 
                 className="border w-[40vh] p-2 cursor-pointer"
                 placeholder="e.g wash clothes"
-                type="text" />
+                type="text" 
+                value={task}
+                onChange={newTaskHandler}
+                />
+
                 <button className="bg-blue-500 rounded-md w-[15vh] text-xl text-white p-2">Submit</button>
             </form>
             </div>
