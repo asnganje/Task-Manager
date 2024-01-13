@@ -5,8 +5,8 @@ const TaskItem = () => {
         <div className="flex justify-between shadow-2xl p-3 w-[60vh]">
             <p>Task Item</p>
             <div className="flex">
-                <input type="checkbox" className="p-1"/>
-                <MdDelete className="text-2xl"/>
+                <input type="checkbox" className="cursor-pointer p-1"/>
+                <MdDelete className="text-2xl cursor-pointer"/>
             </div>
         </div>
     )
