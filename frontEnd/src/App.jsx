@@ -1,17 +1,15 @@
-import TaskCreate from "./components/TaskCreate";
-import TaskList from "./components/TaskList";
-
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import DashBoard from "./components/dashBoard";
+import EditTask from "./components/editTask";
 const App = () => {
   return (
-    <div className="flex flex-col items-center p-5 font-mono">
-      <div className="shadow-2xl p-5 mb-3">
-        <h2 className="text-center text-2xl font-bold">Task Manager</h2>
-        <TaskCreate />
-      </div>
-      <div>
-        <TaskList />
-      </div>
-    </div>
+    
+      <BrowserRouter>
+      <Routes>
+          <Route path="/" element = {<DashBoard/>}/>
+          <Route path="/edit" element = {<EditTask/>}/>
+      </Routes>
+    </BrowserRouter>
   );
 };
 
