@@ -1,9 +1,12 @@
 import {Link} from 'react-router-dom'
-const EditTask = () => {
+const EditTask = ({setEdit}) => {
+    const removeEditHandler = () => {
+        setEdit(false)
+    }
     return(
-        <div>
+        <div className='flex flex-col items-center'>
             <div>Edit Task</div>
-            <Link to='/api/v1/tasks'>Back to tasks</Link>
+            <Link to='/' onClick={removeEditHandler}>Back to tasks</Link>
         </div>
 
     )
