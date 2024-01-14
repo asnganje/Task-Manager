@@ -2,7 +2,7 @@ import { MdDelete } from "react-icons/md";
 import { CiEdit } from "react-icons/ci";
 import { useState } from "react";
 import EditTask from "./editTask";
-import { removeTask, getTasks } from "../store/thunks/tasksThunk";
+import { removeTask, toggleTaskComplete } from "../store/thunks/tasksThunk";
 import { useDispatch } from "react-redux";
 
 const TaskItem = ({task}) => {
@@ -13,20 +13,32 @@ const TaskItem = ({task}) => {
         dispatch(removeTask(id))
     }
     const handleEdit = () => {
+        if (task.completed) {
+            setEdit(false)
+        } else{
             setEdit(true)
+        }
     }
     
+    const handleToggleComplete = (task) => {
+        const {_id, completed} = task;
+        dispatch(toggleTaskComplete({taskID: _id, completed: !completed}))
+    }
     return(
         <div>
         {!edit?
-        <div className="flex justify-between shadow-2xl p-3 w-[60vh]">
+        <div className="flex text-blue-500 justify-between shadow-2xl p-3 w-[60vh]">
             <div className="flex gap-2">
-                <input type="checkbox" className="cursor-pointer p-1"/>
-                <p>{task.name}</p>
+                <input type="checkbox" 
+                className="cursor-pointer w-5 h-5 border border-blue-300 mt-1"
+                checked = {task.completed}
+                onChange={()=>handleToggleComplete(task)}
+                />
+                <p className={`${task.completed? 'line-through': 'none' }`}>{task.name}</p>
             </div>
-            <div className="flex gap-2">
-                <CiEdit onClick={handleEdit} className="text-2xl cursor-pointer"/>
-                <MdDelete onClick={()=>handleDelete(task._id)} className="text-2xl cursor-pointer"/>
+            <div className="flex gap-2 text-blue-500">
+                <CiEdit onClick={handleEdit} className="text-2xl cursor-pointer hover:text-black"/>
+                <MdDelete onClick={()=>handleDelete(task._id)} className="text-2xl cursor-pointer hover:text-red-500"/>
             </div>
         </div>:
         <div>
