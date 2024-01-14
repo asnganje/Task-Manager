@@ -30,7 +30,7 @@ const TaskItem = ({task}) => {
             </div>
         </div>:
         <div>
-            <EditTask setEdit = {setEdit}/>
+            <EditTask setEdit = {setEdit} task = {task}/>
         </div>
         }
         </div>
