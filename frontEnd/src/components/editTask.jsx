@@ -1,13 +1,43 @@
+import { useState } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
 import {Link} from 'react-router-dom'
-const EditTask = ({setEdit}) => {
+import { updateTask } from '../store/thunks/tasksThunk'
+
+const EditTask = ({setEdit, task}) => {
+    const tasks = useSelector((state)=>state.tasks.data)
+    const item = tasks.find((el)=>el._id === task._id)
+    const [edited, setEdited] = useState(item.name)
+    const dispatch = useDispatch()
+
     const removeEditHandler = () => {
         setEdit(false)
     }
+    const editHandler = (e) => {
+        setEdited(e.target.value)
+    }
+    const content = {item, newItem: edited}
+    const handleEditedSubmit = (e) => {
+        e.preventDefault();
+        dispatch(updateTask(content))
+    }
+
     return(
-        <div className='flex flex-col items-center'>
-            <div>Edit Task</div>
+        <form onSubmit={handleEditedSubmit} className='flex flex-col items-center shadow-2xl bg-slate-500 p-3 rounded-md opacity-100'>
+            <div className='space-x-2'>
+                <input 
+                type="text"
+                value={edited}
+                onChange={editHandler} 
+                />
+                <button 
+                type="submit"
+                className="bg-blue-300 rounded-md w-[15vh] text-white p-1"
+                >
+                    Edit
+                </button>
+            </div>
             <Link to='/' onClick={removeEditHandler}>Back to tasks</Link>
-        </div>
+        </form>
 
     )
     
