@@ -22,21 +22,22 @@ const EditTask = ({setEdit, task}) => {
     }
 
     return(
-        <form onSubmit={handleEditedSubmit} className='flex flex-col items-center shadow-2xl bg-slate-500 p-3 rounded-md opacity-100'>
+        <form onSubmit={handleEditedSubmit} className='flex flex-col items-center shadow-2xl bg-blue-300 p-3 rounded-md opacity-100'>
             <div className='space-x-2'>
                 <input 
+                className='rounded-md p-2'
                 type="text"
                 value={edited}
                 onChange={editHandler} 
                 />
                 <button 
                 type="submit"
-                className="bg-blue-300 rounded-md w-[15vh] text-white p-1"
+                className="bg-gray-500 rounded-md w-[15vh] text-white p-1"
                 >
                     Edit
                 </button>
             </div>
-            <Link to='/' onClick={removeEditHandler}>Back to tasks</Link>
+            <Link to='/' className='text-white font-bold hover:underline' onClick={removeEditHandler}>Back to tasks</Link>
         </form>
 
     )
