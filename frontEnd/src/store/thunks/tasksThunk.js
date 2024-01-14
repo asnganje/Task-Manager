@@ -49,4 +49,15 @@ const updateTask = createAsyncThunk('tasks/updateTask', async(content)=> {
         throw error
     }
 })
-export {createTask, getTasks, removeTask, updateTask}
+
+const toggleTaskComplete = createAsyncThunk('tasks/toggleTaskComplete', async({taskID, completed})=> {
+    try {
+        const response = await axios.patch(`http://localhost:3000/api/v1/tasks/${taskID}`, {
+            completed: completed})
+            return response.data;
+    } catch (error) {
+        console.error('Error loading tasks:', error);
+        throw error
+    }
+})
+export {createTask, getTasks, removeTask, updateTask, toggleTaskComplete}
