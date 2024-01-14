@@ -9,7 +9,7 @@ const TaskCreate = () => {
     const newTaskHandler = (e) => {
         setTask(e.target.value)
     }
-    const newTask = {name: task}
+    const newTask = {name: task, completed: false}
     const submitHandler = (e)=> {
         e.preventDefault()
         dispatch(createTask(newTask))
@@ -18,7 +18,7 @@ const TaskCreate = () => {
 
     return(
             <div className="shadow-2xl p-5 mb-3">
-                <h2 className="text-center text-2xl font-bold">Task Manager</h2>
+                <h2 className="text-center text-2xl font-bold text-blue-500">Task Manager</h2>
             
                 <form onSubmit={submitHandler} className="flex gap-2">
                 <input 
