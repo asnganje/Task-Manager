@@ -12,7 +12,7 @@ const DashBoard = () => {
     }, [])
     
     return(
-        <div  className="flex flex-col text-xl gap-10 items-center p-5 font-mono">
+        <div  className="border rounded-md mx-[35%] h-[90vh] mt-5 flex flex-col text-xl gap-10 items-center p-5 font-mono">
             <TaskCreate />
             <TaskList />
         </div>
