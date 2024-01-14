@@ -18,7 +18,7 @@ const TaskList = () => {
         )
     })
     return(
-        <div>
+        <div className="opacity-1 mt-5">
             {renderedTasks}
         </div>
     )
