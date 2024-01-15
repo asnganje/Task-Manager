@@ -6,7 +6,7 @@ const TaskList = () => {
     const {data, isLoading} = useSelector((store)=>store.tasks)
     if(isLoading) {
         return(
-            <h3>Loading...</h3>
+            <h3 className="text-center text-blue-500 text-lg italic">Loading...</h3>
         )
     }
 
